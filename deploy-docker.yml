@@ -1,6 +1,6 @@
 ---
 - hosts: dev
-  become: True
+  become: true
   tasks:
     - name: Install python pip
       apt:
@@ -9,7 +9,7 @@
 
     - name: Install docker
       apt:
-        name: docker.io
+        name: docker
         state: present
 
     - name: Start docker service
@@ -18,7 +18,18 @@
         state: started
         enabled: yes
 
-    - name: Install docker-py python module
+    - name: Install docker-py python module using system package manager
+      apt:
+        name: python3-docker
+        state: present
+
+    - name: Create a virtual environment
+      command: python3 -m venv /path/to/venv
+
+    - name: Activate the virtual environment
+      command: source /path/to/venv/bin/activate
+
+    - name: Install docker-py in the virtual environment
       pip:
         name: docker-py
         state: present
@@ -29,4 +40,4 @@
         image: "adlaniq/ikan:{{ DOCKER_TAG }}"
         state: started
         published_ports:
-          - 0.0.0.0:8080:8080
+          - "0.0.0.0:8080:8080"
