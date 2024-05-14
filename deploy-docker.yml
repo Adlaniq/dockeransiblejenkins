@@ -36,7 +36,7 @@
 
     - name: Start the container
       docker_container:
-        name: Ikan container
+        name: ikanContainer
         image: "adlaniq/ikan:{{ DOCKER_TAG }}"
         state: started
         published_ports:
