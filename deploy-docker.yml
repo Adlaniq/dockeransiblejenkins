@@ -29,10 +29,10 @@
     # - name: Activate the virtual environment
     #   command: source /path/to/venv/bin/activate
 
-    - name: Install docker-py in the virtual environment
-      pip:
-        name: docker-py
-        state: present
+    # - name: Install docker-py in the virtual environment
+    #   pip:
+    #     name: docker-py
+    #     state: present
 
     - name: Start the container
       docker_container:
